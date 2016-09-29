@@ -1,0 +1,25 @@
+package br.com.fiap.teste;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+
+import br.com.fiap.arquivos.modelo.Produto;
+
+public class TesteArquivo_Stream {
+	static String gravarArq(Produto p) throws Exception{
+		FileOutputStream file = new FileOutputStream("c:\\temp\\computador.arq");
+		ObjectOutputStream stream = new ObjectOutputStream(file);
+		stream.writeObject(p);
+		stream.flush();
+		stream.close();
+		
+		return "Objeto Armazenado";
+	}
+	
+	public static void main(String[] args) throws Exception{
+		Produto obj = new Produto("Positivo", "1 GB", "Cssas", "2 ghz");
+		System.out.println(gravarArq(obj));
+	}
+	
+	
+}

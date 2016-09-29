@@ -1,0 +1,39 @@
+package br.com.fiap.arquivos.teste;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
+import br.com.fiap.arquivos.modelo.Produto;
+
+public class TesteArquivo_Texto {
+	static String gravarArq(Produto p) throws Exception{
+		FileWriter arquivo = new FileWriter("c:/temp/exemplo1.txt");
+		PrintWriter dados = new PrintWriter(arquivo);
+		dados.println(p.getNome());
+		dados.print(p.getRevendedor());
+		dados.close();
+		arquivo.close();
+		return "Gravado";
+	}
+	
+	static String lerArq() throws Exception{
+		FileReader arquivo = new FileReader("c:/temp/exemplo1.txt");
+		BufferedReader dados = new BufferedReader(arquivo);
+		String resultado = "";
+		while(dados.ready()){
+			resultado += dados.readLine() + "\n";
+		}
+		dados.close();
+		arquivo.close();
+		return resultado;
+		
+	}
+	
+	public static void main(String[] args) throws Exception{
+		Produto obj = new Produto("Positivo", "1GB", "Casa", "2ghz");
+		System.out.println(gravarArq(obj));
+		System.out.println(lerArq());
+	}
+}
